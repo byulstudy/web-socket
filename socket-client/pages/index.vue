@@ -1,12 +1,12 @@
 <template>
-	<div class="flex">
-		<button @click="send">test</button>
+	<div class="text-center">
+		<div style="width: 200px" class="mb-2 text-xl font-bold">줄서기</div>
+		<button class="btn btn-blue" @click="lineup">신청</button>
 	</div>
 </template>
 <script setup lang="ts">
-const { $socket } = useSocket();
-const send = () => {
-	$socket.send("/echo", { test: "test" });
+const lineup = () => {
+	// TODO call lineup API
+	navigateTo("/lineup");
 };
 </script>
-<style lang="scss"></style>
