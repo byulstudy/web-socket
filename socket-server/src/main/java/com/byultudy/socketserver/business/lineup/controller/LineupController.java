@@ -1,4 +1,4 @@
-package com.byultudy.socketserver.lineup.controller;
+package com.byultudy.socketserver.business.lineup.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
