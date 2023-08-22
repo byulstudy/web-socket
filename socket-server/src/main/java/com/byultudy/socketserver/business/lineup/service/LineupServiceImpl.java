@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.Set;
 import java.time.ZoneId;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +30,11 @@ public class LineupServiceImpl implements LineupService, SchedulerProcessable {
         final long score = now.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
         this.addToZSet(id, (int) score);
         return new LineupResponseDto(id, now);
+    }
+
+    @Override
+    public Optional<Long> getRank(final String id) {
+        return Optional.ofNullable(redisTemplate.opsForZSet().rank(REDIS_Z_SET_KEY, id));
     }
 
     private void addToZSet(final String id, final int score) {
