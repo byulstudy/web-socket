@@ -12,8 +12,8 @@ public class EchoStompHandler {
 
     private final SimpMessageSendingOperations simpMessageSendingOperations;
 
-    @MessageMapping("/echo")     // /pub/echo
-    @SendTo("/sub/echo")
+    @MessageMapping("/echo")     // 발송자에게서 받음 /pub/echo
+    @SendTo("/sub/echo") //구독자에게 발행
     public String handleEcho(byte[] payload) {
         if (payload == null || payload.length == 0) {
             return "...";
