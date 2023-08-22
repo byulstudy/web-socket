@@ -11,11 +11,13 @@ import org.mockito.Mockito;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 import java.time.LocalDateTime;
 
 import static com.byultudy.socketserver.business.lineup.service.LineupServiceImpl.REDIS_Z_SET_KEY;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 
 class LineupServiceImplTest {
@@ -37,7 +39,7 @@ class LineupServiceImplTest {
         localDateTimeMockedStatic.when(LocalDateTime::now)
                 .thenReturn(TARGET_DATE_TIME);
 
-        this.lineupService = new LineupServiceImpl(redisTemplate);
+        this.lineupService = new LineupServiceImpl(redisTemplate, mock(SimpMessagingTemplate.class));
     }
 
 
