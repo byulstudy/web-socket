@@ -5,8 +5,35 @@
 	</div>
 </template>
 <script setup lang="ts">
+import stringUtil from "~/utils/string.util";
+const myId = stringUtil.guid();
+
 const lineup = () => {
-	// TODO call lineup API
-	navigateTo("/lineup");
+	$fetch("/api/lineup", {
+		method: "post",
+		body: {
+			id: myId,
+		},
+	}).then(res => {
+		console.log(res);
+	});
+	navigateTo({ path: "/lineup", query: { myId } });
 };
+
+const wait = async () => await new Promise(resolve => setTimeout(resolve, 50));
+
+onMounted(async () => {
+	let canFetch = true;
+	while (canFetch) {
+		await wait();
+		await $fetch("/api/lineup", {
+			method: "post",
+			body: {
+				id: stringUtil.guid(),
+			},
+		}).catch(() => {
+			canFetch = false;
+		});
+	}
+});
 </script>
