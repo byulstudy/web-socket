@@ -35,6 +35,7 @@ export const useSocket = () => {
 			abort: (transaction: string) => $socket.abort(transaction),
 			commit: (transaction: string) => $socket.commit(transaction),
 			debug: (...args: any[]) => $socket.debug(args),
+			isConnected: () => $socket.connected,
 		},
 	};
 };
