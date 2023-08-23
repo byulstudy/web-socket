@@ -16,7 +16,7 @@ export const useSocket = () => {
 			) =>
 				$socket.send(
 					`${$sendUriPrefix}/${urlUtils.removeLeadingSlash(destination)}`,
-					JSON.stringify(body),
+					typeof body !== "string" ? JSON.stringify(body) : body,
 					headers,
 				),
 			subscribe: (
