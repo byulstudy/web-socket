@@ -1,12 +1,7 @@
 <template>
-	<div class="flex">
-		<button @click="send">test</button>
-	</div>
+	<ticket-reservation />
 </template>
 <script setup lang="ts">
-const { $socket } = useSocket();
-const send = () => {
-	$socket.send("/echo", { test: "test" });
-};
+import TicketReservation from "~/components/TicketReservation.vue";
 </script>
 <style lang="scss"></style>

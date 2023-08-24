@@ -25,7 +25,7 @@ export const useSocket = () => {
 				header?: SubscribeHeaders,
 			) =>
 				$socket.subscribe(
-					`${$subscribeUriPrefix}/${urlUtils.removeLeadingSlash(destination)}`,
+					`/${urlUtils.removeLeadingSlash(destination)}`,
 					callback,
 					header,
 				),
