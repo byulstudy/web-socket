@@ -57,6 +57,6 @@ class LineupServiceImplTest {
 
         assertThat(res.id()).isEqualTo(id);
         assertThat(res.createdAt()).isEqualTo(TARGET_DATE_TIME);
-        assertThat(redisTemplate.opsForZSet().zCard(REDIS_Z_SET_KEY)).isEqualTo(1L);
+        assertThat(redisTemplate.opsForZSet().popMax(REDIS_Z_SET_KEY).getValue()).isEqualTo(res.id());
     }
 }
